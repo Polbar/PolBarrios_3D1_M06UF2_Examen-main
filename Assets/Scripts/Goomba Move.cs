@@ -25,10 +25,29 @@ public class Mario_Move : MonoBehaviour
        if(Input.GetKey(KeyCode.A))
        {
         transform.Translate(-speed, 0, 0);
+        FlipSprite(true);
        } 
+       
        if(Input.GetKey(KeyCode.D))
        {
         transform.Translate(speed, 0, 0);
+        FlipSprite(false);
        }  
+    }
+
+    void FlipSprite(bool isLeft)
+    {
+        Vector3 scale = transform.localScale;
+
+        if (isLeft)
+        {
+            scale.x = -Mathf.Abs(scale.x);
+        }
+        else
+        {
+            scale.x = Mathf.Abs(scale.x);
+        }
+
+        transform.localScale = scale;
     }
 }

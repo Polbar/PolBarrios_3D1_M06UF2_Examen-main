@@ -25,10 +25,29 @@ public class Goomba_Move : MonoBehaviour
        if(Input.GetKey(KeyCode.LeftArrow))
        {
         transform.Translate(-speed, 0, 0);
+        FlipSprite(true);
        } 
        if(Input.GetKey(KeyCode.RightArrow))
        {
         transform.Translate(speed, 0, 0);
-       }  
+        FlipSprite(false);
+       } 
+       
+    }
+    
+     void FlipSprite(bool isLeft)
+    {
+        Vector3 scale = transform.localScale;
+
+        if (isLeft)
+        {
+            scale.x = -Mathf.Abs(scale.x);
+        }
+        else
+        {
+            scale.x = Mathf.Abs(scale.x);
+        }
+
+        transform.localScale = scale;
     }
 }
